@@ -5,9 +5,10 @@ import { Component } from '@angular/core';
   template: `<h1>{{title}}</h1>
     <ul>
       <li *ngFor="let carPart of carParts">
-        <h2>{{carPart.name}}</h2>
+        <h2>{{carPart.name |uppercase}}</h2>
         <p>{{carPart.description}}</p>
-        <p>{{carPart.inStock}} in Stock</p>
+        <p *ngIf="carPart.inStock > 0">{{carPart.inStock}} in Stock</p>
+        <p *ngIf="carPart.inStock ===0">Out of Stock</p>
       </li>
     </ul>
   `,
@@ -19,10 +20,17 @@ export class AppComponent {
     'name': 'Super Tires',
     'description': 'These tires are the very best',
     'inStock': 5
-  }, {
+  },
+    {
       'id': 2,
       'name': 'Reinforced Shocks',
       'description': 'Shocks made from kryptonite',
       'inStock': 4
+    },
+    {
+      'id': 3,
+      'name': 'Reinforced Shocks',
+      'description': 'Shocks made from kryptonite',
+      'inStock': 0
     }]
 }
